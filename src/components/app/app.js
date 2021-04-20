@@ -11,12 +11,18 @@ export default class App extends Component {
     constructor() {
         super()
         this.state = {
-            isRandom: true
+            isRandom: true,
+            selectedChar: null
         }
 
         this.randomToogle = this.randomToogle.bind(this)
     }
-    
+
+    onCharSelected = (id) => {
+        this.setState({
+            selectedChar: id
+        })
+    }
 
     randomToogle() {
         this.setState({
@@ -40,10 +46,10 @@ export default class App extends Component {
                     </Row>
                     <Row>
                         <Col md='6'>
-                            <ItemList />
+                            <ItemList onCharSelected={this.onCharSelected}/>
                         </Col>
                         <Col md='6'>
-                            <CharDetails />
+                            <CharDetails charId={this.state.selectedChar}/>
                         </Col>
                     </Row>
                 </Container>
