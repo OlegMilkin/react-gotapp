@@ -13,6 +13,12 @@ export default class CharDetails extends Component {
         this.updateChar()
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.charId !== prevProps.charId) {
+            this.updateChar()
+        }
+    }
+
     updateChar() {
         const {charId} = this.props;
         if (!charId) {
@@ -25,6 +31,8 @@ export default class CharDetails extends Component {
                   char
               })
           })
+
+         // this.foo.bar = 0;
     }
 
     render() {

@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import ItemList from '../itemList';
-import CharDetails from '../charDetails';
-
+import ErrorMessage from '../errorMessage';
+import CharacterPage from "../characterPage";
 
 export default class App extends Component {
 
@@ -12,16 +11,10 @@ export default class App extends Component {
         super()
         this.state = {
             isRandom: true,
-            selectedChar: null
+            error: false
         }
 
         this.randomToogle = this.randomToogle.bind(this)
-    }
-
-    onCharSelected = (id) => {
-        this.setState({
-            selectedChar: id
-        })
     }
 
     randomToogle() {
@@ -44,14 +37,7 @@ export default class App extends Component {
                             <button onClick={this.randomToogle}>RandomChar Toogle</button>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col md='6'>
-                            <ItemList onCharSelected={this.onCharSelected}/>
-                        </Col>
-                        <Col md='6'>
-                            <CharDetails charId={this.state.selectedChar}/>
-                        </Col>
-                    </Row>
+                    <CharacterPage/>
                 </Container>
             </>
         )
