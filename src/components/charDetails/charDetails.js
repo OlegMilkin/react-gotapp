@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import './charDetails.css';
 import gotService from '../../services/gotService'
+import Spinner from '../spinner'
 export default class CharDetails extends Component {
 
     gotService = new gotService();
 
     state = {
-        char: null
+        char: null,
+        loading: true
     }
 
     componentDidMount() {
@@ -28,7 +30,8 @@ export default class CharDetails extends Component {
         this.gotService.getCharacter(charId)
           .then((char) => {
               this.setState({
-                  char
+                  char,
+                  loading: false
               })
           })
 
@@ -39,6 +42,10 @@ export default class CharDetails extends Component {
 
         if (!this.state.char) {
             return <span className='select-error'>Please select a character</span>
+        }
+
+        if (this.state.loading) {
+            return <Spinner/>
         }
 
         const {name, gender, born, died, culture} = this.state.char

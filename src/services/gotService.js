@@ -13,29 +13,29 @@ export default class GotService {
     return await res.json();
   }
 
-  getAllBooks() {
+  getAllBooks = async () => {
     return this.getResource(`/books/`);
   }
 
-  getBook(id) {
+  getBook = async (id) => {
     return this.getResource(`/books/${id}/`);
   }
 
-  async getAllCharacters() {
+  getAllCharacters = async () => {
     const res = await this.getResource(`/characters?page=5&pageSize=10`);
     return res.map(this._transformCharacter)
   }
 
-  async getCharacter (id) {
+  getCharacter = async (id) => {
     const character = await this.getResource(`/characters/${id}`);
     return this._transformCharacter(character)
   }
 
-  getAllHouses() {
+  getAllHouses = async () => {
     return this.getResource(`/houses/`);
   }
 
-  getHouse(id) {
+  getHouse = async (id) => {
     return this.getResource(`/houses/${id}/`);
   }
 
